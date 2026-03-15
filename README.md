@@ -1,11 +1,12 @@
-🌍 PrithviNet – Smart Environment Monitoring System
+🌍 PrithviNet – Smart Environment Monitoring System 
 
 PrithviNet is an AI-powered environmental monitoring platform designed to track pollution levels, analyze environmental data, and enable citizens and authorities to respond to environmental issues in real time.
 
 The system integrates air, water, and noise monitoring, AI analytics, citizen reporting, and live pollution maps to create a transparent environmental management system.
 
 🚀 Features
-🌎 Live Pollution Map
+
+🌎 Live Pollution Map -
 
 Real-time pollution visualization using OpenStreetMap
 
@@ -31,7 +32,7 @@ High-risk zones
 
 Most polluted areas
 
-📊 Real-Time Monitoring
+📊 Real-Time Monitoring - 
 
 Monitor environmental metrics including:
 
@@ -43,13 +44,13 @@ PM2.5
 
 PM10
 
-💧 Water Monitoring
+💧 Water Monitoring - 
 
 pH levels
 
 Contamination detection
 
-🔊 Noise Monitoring
+🔊 Noise Monitoring -
 
 Urban noise tracking
 
@@ -57,7 +58,7 @@ Industrial noise alerts
 
 Real-time graphs display pollution trends over time.
 
-🤖 AI Environmental Copilot
+🤖 AI Environmental Copilot - 
 
 PrithviNet includes an AI Copilot powered by environmental datasets such as:
 
@@ -81,7 +82,7 @@ Pollution forecasting (24–72 hours)
 
 Environmental anomaly detection
 
-🚨 Alerts & Notifications
+🚨 Alerts & Notifications - 
 
 Automatic alerts are generated when pollution exceeds safe thresholds.
 
@@ -105,7 +106,7 @@ Timestamp
 
 Status tracking
 
-📈 Analytics & Reports
+📈 Analytics & Reports - 
 
 Environmental analytics dashboard includes:
 
@@ -125,7 +126,7 @@ Export Reports
 
 Reports can be exported as PDF documents.
 
-👥 Citizen Portal
+👥 Citizen Portal - 
 
 The platform allows citizens to report environmental problems.
 
@@ -159,7 +160,7 @@ View public environmental data
 
 Receive health advisories
 
-🧾 Environmental Health Advisory
+🧾 Environmental Health Advisory - 
 
 PrithviNet provides health guidance based on pollution levels.
 
@@ -171,7 +172,7 @@ Outdoor exposure recommendations
 
 Mask suggestions near industrial zones
 
-🔑 Authentication System
+🔑 Authentication System - 
 
 Role-based access control system with multiple user roles:
 
@@ -183,11 +184,11 @@ Role-based access control system with multiple user roles:
 
 🏛 Regional Officer
 
-⚙ Super Admin
+⚙ Super Admin 
 
 Each role has different permissions within the system.
 
-🔌 API Management
+🔌 API Management - 
 
 PrithviNet provides APIs for third-party integration.
 
@@ -206,7 +207,7 @@ Industry compliance
 
 Public environmental datasets
 
-🗺 System Dashboard Modules
+🗺 System Dashboard Modules - 
 
 The system includes multiple interactive modules:
 
@@ -218,7 +219,8 @@ The system includes multiple interactive modules:
 6️⃣ Analytics & Reports
 7️⃣ API Management
 
-🛠 Technology Stack
+🛠 Technology Stack - 
+
 Frontend
 
 React.js
@@ -249,8 +251,9 @@ OpenAQ
 
 Environmental forecasting models
 
-📂 Project Structure
-prithvinet
+📂 Project Structure - 
+
+Prithvinet
 │
 ├── frontend
 │   ├── dashboard
@@ -270,7 +273,8 @@ prithvinet
 │   └── noise
 │
 └── README.md
-📍 Use Cases
+
+📍 Use Cases -
 
 PrithviNet can be used by:
 
@@ -284,20 +288,20 @@ Research institutions
 
 Citizens reporting environmental issues
 
-🌱 Future Enhancements
+🌱 Future Enhancements - 
 
-IoT sensor integration
+1) IoT sensor integration
 
-Satellite pollution detection
+2) Satellite pollution detection
 
-Mobile app for citizens
+3) Mobile app for citizens
 
-Predictive environmental modeling
+4) Predictive environmental modeling
 
-AI-based pollution source detection
+5) AI-based pollution source detection
 
-👨‍💻 Developed By
+👨‍💻 Developed By - 
 
-PrithviNet Development Team
+Team Tricoders
 
 Smart Environmental Monitoring Platform for India 🇮🇳
