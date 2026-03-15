@@ -1,0 +1,469 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: API specification
+  version: 1.0.0
+  description: PrithviNet - Smart Environmental Monitoring Platform API
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: auth
+    description: Authentication and user management
+  - name: monitoring
+    description: Environmental monitoring data
+  - name: alerts
+    description: Alerts and notifications
+  - name: locations
+    description: States, districts and monitoring locations
+  - name: industries
+    description: Industries and water sources
+  - name: ai
+    description: AI Copilot and predictive analytics
+  - name: reports
+    description: Reports and analytics
+  - name: citizens
+    description: Citizen portal
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+-0
++437
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+  /auth/login:
+    post:
+      operationId: loginUser
+      tags: [auth]
+      summary: Login user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        "200":
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "401":
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /auth/register:
+    post:
+      operationId: registerUser
+      tags: [auth]
+      summary: Register new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterRequest"
+      responses:
+        "201":
+          description: User registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+  /auth/me:
+    get:
+      operationId: getCurrentUser
+      tags: [auth]
+      summary: Get current user
+      responses:
+        "200":
+          description: Current user info
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /locations/states:
+    get:
+      operationId: getStates
+      tags: [locations]
+      summary: Get all Indian states
+      responses:
+        "200":
+          description: List of states
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/State"
+  /locations/districts:
+    get:
+      operationId: getDistricts
+      tags: [locations]
+      summary: Get districts optionally filtered by state
+      parameters:
+        - name: stateId
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: List of districts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/District"
+  /monitoring/air:
+    get:
+      operationId: getAirData
+      tags: [monitoring]
+      summary: Get air quality data
+      parameters:
+        - name: stateId
+          in: query
+          schema:
+            type: integer
+        - name: districtId
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+      responses:
+        "200":
+          description: Air quality readings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AirReading"
+    post:
+      operationId: submitAirData
+      tags: [monitoring]
+      summary: Submit air quality reading
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AirReadingInput"
+      responses:
+        "201":
+          description: Reading submitted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AirReading"
+  /monitoring/water:
+    get:
+      operationId: getWaterData
+      tags: [monitoring]
+      summary: Get water quality data
+      parameters:
+        - name: stateId
+          in: query
+          schema:
+            type: integer
+        - name: districtId
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+      responses:
+        "200":
+          description: Water quality readings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/WaterReading"
+    post:
+      operationId: submitWaterData
+      tags: [monitoring]
+      summary: Submit water quality reading
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WaterReadingInput"
+      responses:
+        "201":
+          description: Reading submitted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WaterReading"
+  /monitoring/noise:
+    get:
+      operationId: getNoiseData
+      tags: [monitoring]
+      summary: Get noise pollution data
+      parameters:
+        - name: stateId
+          in: query
+          schema:
+            type: integer
+        - name: districtId
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+      responses:
+        "200":
+          description: Noise readings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/NoiseReading"
+    post:
+      operationId: submitNoiseData
+      tags: [monitoring]
+      summary: Submit noise reading
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NoiseReadingInput"
+      responses:
+        "201":
+          description: Reading submitted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NoiseReading"
+  /monitoring/summary:
+    get:
+      operationId: getMonitoringSummary
+      tags: [monitoring]
+      summary: Get monitoring summary stats
+      parameters:
+        - name: stateId
+          in: query
+          schema:
+            type: integer
+        - name: districtId
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Summary statistics
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MonitoringSummary"
+  /alerts:
+    get:
+      operationId: getAlerts
+      tags: [alerts]
+      summary: Get all alerts
+      parameters:
+        - name: stateId
+          in: query
+          schema:
+            type: integer
+        - name: districtId
+          in: query
+          schema:
+            type: integer
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [air, water, noise, compliance]
+        - name: severity
+          in: query
+          schema:
+            type: string
+            enum: [low, medium, high, critical]
+      responses:
+        "200":
+          description: List of alerts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Alert"
+    post:
+      operationId: createAlert
+      tags: [alerts]
+      summary: Create manual alert
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AlertInput"
+      responses:
+        "201":
+          description: Alert created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Alert"
+  /alerts/{id}/acknowledge:
+    patch:
+      operationId: acknowledgeAlert
+      tags: [alerts]
+      summary: Acknowledge an alert
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Alert acknowledged
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Alert"
+  /industries:
+    get:
+      operationId: getIndustries
+      tags: [industries]
+      summary: Get industries registry
+      parameters:
+        - name: stateId
+          in: query
+          schema:
+            type: integer
+        - name: districtId
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: List of industries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Industry"
+    post:
+      operationId: createIndustry
+      tags: [industries]
+      summary: Register new industry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IndustryInput"
+      responses:
+        "201":
+          description: Industry registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Industry"
+  /ai/query:
+    post:
+      operationId: aiCopilotQuery
+      tags: [ai]
+      summary: Query AI Compliance Copilot
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AiQueryRequest"
+      responses:
+        "200":
+          description: AI response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AiQueryResponse"
+  /ai/forecast:
+    get:
+      operationId: getAiForecast
+      tags: [ai]
+      summary: Get AI pollution forecast
+      parameters:
+        - name: stateId
+          in: query
+          schema:
+            type: integer
+        - name: districtId
+          in: query
+          schema:
+            type: integer
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [air, water, noise]
+        - name: hours
+          in: query
+          schema:
+            type: integer
+            default: 24
+      responses:
+        "200":
+          description: Forecast data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ForecastResponse"
+  /ai/anomalies:
+    get:
+      operationId: getAnomalies
+      tags: [ai]
+      summary: Get detected anomalies
+      parameters:
+        - name: stateId
+          in: query
+          schema:
+            type: integer
+        - name: districtId
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Anomaly list
+          content:
+            application/json:
+              schema:
+ ...
+[truncated]
+[truncated]
+[truncated]
